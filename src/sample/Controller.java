@@ -173,9 +173,8 @@ public class Controller implements Initializable {
         int selectedIndex = angajatiTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
             Angajati selAngajat = angajatiTable.getItems().get(selectedIndex);
-
-
             SelectAngajati.deleteAngajat(selAngajat);
+            angajatiTable.getItems().remove(selectedIndex);
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -186,7 +185,7 @@ public class Controller implements Initializable {
 
             alert.showAndWait();
         }
-        angajatiTable.getItems().remove(selectedIndex);
+
     }
 
     /**
