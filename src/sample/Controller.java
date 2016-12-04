@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.xml.soap.Text;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -52,6 +53,8 @@ public class Controller implements Initializable {
     private TextField Specializare;
     @FXML
     private TextField idEchipa;
+    @FXML
+    private TextField searchField;
 
 
     //create table data
@@ -84,6 +87,7 @@ public class Controller implements Initializable {
      */
     private void showPersonDetails(Angajati angajat) {
         if (angajat != null) {
+
             // Fill the labels with info from the person object.
             fNameLabel.setText(angajat.getfName());
             lNameLabel.setText(angajat.getlName());
@@ -160,14 +164,18 @@ public class Controller implements Initializable {
             return false;
         }
     }
+
     /**
-    * Handle for the Delete Button
-    */
+     * Handle for the Delete Button
+     */
     @FXML
     public void handleDeleteAngajat() {
         int selectedIndex = angajatiTable.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            angajatiTable.getItems().remove(selectedIndex);
+            Angajati selAngajat = angajatiTable.getItems().get(selectedIndex);
+
+
+            SelectAngajati.deleteAngajat(selAngajat);
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -178,11 +186,30 @@ public class Controller implements Initializable {
 
             alert.showAndWait();
         }
+        angajatiTable.getItems().remove(selectedIndex);
     }
 
+    /**
+    * Search button for first name
+     * */
+    //TODO Create complex search direct from DataBase with TabelView display of the results
     public void searchButoonClicked() {
-        AlertBox.display("Warning!", "You must insert Search Parameters");
-        System.out.println("I just searched for something");
+        if (searchField.getText().equals("")) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(Main.getPrimaryStage());
+            alert.setTitle("Missing Parameter");
+            alert.setHeaderText("Missing search parameter");
+            alert.setContentText("Please insert searching term");
+
+            alert.showAndWait();
+        } else
+            for (int i = 0; i < data.size(); i++)
+                if (data.get(i).getfName().equals(searchField.getText())) {
+                    angajatiTable.getSelectionModel().select(i);
+                    System.out.println(data.get(i).getfName());
+                }
+
+
 
     }
 }
