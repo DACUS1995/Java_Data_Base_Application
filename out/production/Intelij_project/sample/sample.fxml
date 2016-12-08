@@ -93,6 +93,7 @@
                                                         <TextField fx:id="Specializare" layoutX="127.0" layoutY="302.0" />
                                           <Label layoutX="31.0" layoutY="276.0" text="Echipa" />
                                           <TextField fx:id="idEchipa" layoutX="127.0" layoutY="272.0" />
+                                          <Button layoutX="143.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleUpdateAngajat" text="Update" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="143.0" />
                                                     </children>
                                                 </AnchorPane>
                                             </items>

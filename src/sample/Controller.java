@@ -166,6 +166,31 @@ public class Controller implements Initializable {
     }
 
     /**
+     * Handle for the Update Button
+     */
+    @FXML
+    public void handleUpdateAngajat(){
+        Angajati angajat = angajatiTable.getSelectionModel().getSelectedItem();
+        if (angajat != null) {
+            boolean okClicked = showAngajatEditDialog(angajat);
+            //SelectAngajati.updateAngajat(angajat);
+            if (okClicked) {
+                showPersonDetails(angajat);
+            }
+
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(Main.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+
+            alert.showAndWait();
+        }
+    }
+
+    /**
      * Handle for the Delete Button
      */
     @FXML

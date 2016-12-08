@@ -10,7 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AngajatiEditDialogController  {
+public class AngajatiEditDialogController {
 
     @FXML
     private TextField fNameField;
@@ -37,6 +37,7 @@ public class AngajatiEditDialogController  {
     private Stage dialogStage;
     private Angajati angajat;
     private boolean okClicked = false;
+    private boolean updateFlag = false; //if true use update else use insert
 
 
     //This method is automatically called after the fxml file has been loaded.
@@ -53,10 +54,10 @@ public class AngajatiEditDialogController  {
 
     public void setAngajat(Angajati angajat) {
         this.angajat = angajat;
-
+        if (angajat.getfName() != null) updateFlag = true;
         fNameField.setText(angajat.getfName());
         lNameField.setText(angajat.getlName());
-        dataNastereField.setText(angajat.getDataNastere().toPattern());
+        dataAngajareField.setText(angajat.getDataAngajare().toPattern());
         sexField.setText(angajat.getSex());
         telefonField.setText(angajat.getTel());
         emailField.setText(angajat.getEmail());
@@ -88,7 +89,9 @@ public class AngajatiEditDialogController  {
             angajat.setSalariu(salariuField.getText());
             angajat.setIdEchipa(Integer.parseInt(idEchipaField.getText()));
             angajat.setSpecializare(specializareField.getText());
-            SelectAngajati.InsertAngajat(angajat);
+            if (updateFlag == false)
+                SelectAngajati.InsertAngajat(angajat);
+            else SelectAngajati.updateAngajat(angajat);
             okClicked = true;
             dialogStage.close();
         }
@@ -138,7 +141,6 @@ public class AngajatiEditDialogController  {
         if (Integer.parseInt(idEchipaField.getText()) == 0 || idEchipaField.getText().length() == 0) {
             errorMessage += "No valid Echipa!\n";
         }
-
 
 
         if (errorMessage.length() == 0) {
