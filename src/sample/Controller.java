@@ -55,16 +55,21 @@ public class Controller implements Initializable {
     private TextField idEchipa;
     @FXML
     private TextField searchField;
+    @FXML
+    private ChoiceBox choiceBox;
 
 
     //create table data
     final ObservableList<Angajati> data = SelectAngajati.getDataFromDB(); //get loaded array of Angajati
+    final ObservableList<String> searchParam = FXCollections.observableArrayList("Nume", "Prenume");
 
     //Connects the FXML data type from tabel with the one from Angajati class
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         fName.setCellValueFactory(new PropertyValueFactory<Angajati, String>("fName"));
         lName.setCellValueFactory(new PropertyValueFactory<Angajati, String>("lName"));
+        choiceBox.setItems(searchParam);
+        choiceBox.getSelectionModel().select(1);
 
         angajatiTable.setItems(data); //populate the table from data array
 
@@ -173,7 +178,7 @@ public class Controller implements Initializable {
         Angajati angajat = angajatiTable.getSelectionModel().getSelectedItem();
         if (angajat != null) {
             boolean okClicked = showAngajatEditDialog(angajat);
-            //SelectAngajati.updateAngajat(angajat);
+            SelectAngajati.updateAngajat(angajat);
             if (okClicked) {
                 showPersonDetails(angajat);
             }
@@ -226,14 +231,27 @@ public class Controller implements Initializable {
             alert.setContentText("Please insert searching term");
 
             alert.showAndWait();
-        } else
-            for (int i = 0; i < data.size(); i++)
-                if (data.get(i).getfName().equals(searchField.getText())) {
-                    angajatiTable.getSelectionModel().select(i);
-                    System.out.println(data.get(i).getfName());
-                }
+        } else {
+            int selection = choiceBox.getSelectionModel().getSelectedIndex(); //pozitia din Choice Box pentru param. de cautare
+            switch (selection) {
+                case 1:
+                    for (int i = 0; i < data.size(); i++)
+                        if (data.get(i).getfName().equals(searchField.getText())) {
+                            angajatiTable.getSelectionModel().select(i);
+                            System.out.println(data.get(i).getfName());
+                            break;
+                        }
+                    break;
 
-
-
+                case 0:
+                    for (int i = 0; i < data.size(); i++)
+                        if (data.get(i).getlName().equals(searchField.getText())) {
+                            angajatiTable.getSelectionModel().select(i);
+                            System.out.println(data.get(i).getlName());
+                            break;
+                        }
+                    break;
+            }
+        }
     }
 }

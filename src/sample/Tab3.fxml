@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="270.0" prefWidth="413.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Tab3Controller">
+   <children>
+      <Button layoutX="155.0" layoutY="94.0" mnemonicParsing="false" onAction="#OnCLick" text="Fuck You" />
+   </children>
+</AnchorPane>

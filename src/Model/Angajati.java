@@ -32,11 +32,11 @@ public class Angajati {
         this.idEchipa.set(idEchipa);
     }
 
-    public void setDataAngajare(String dataAngajare){
+    public void setDataAngajare(String dataAngajare) {
         this.dataAngajare.applyPattern(dataAngajare);
     }
 
-    public void setDataNastere(String dataNastere){
+    public void setDataNastere(String dataNastere) {
         this.dataNastere.applyPattern(dataNastere);
     }
 
@@ -133,7 +133,7 @@ public class Angajati {
     }
 
     public Angajati() {
-        this(null, null,new String(""), null, null, null, new String(""), null, new String("0"), null);
+        this(null, null, new String(""), null, null, null, new String(""), null, new String("0"), null);
     }
 
     public Angajati(String fName, String lName, String dataAngajare, String sex, String tel, String email, String dataNastere, String salariu, String idEchipa, String specializare) {
@@ -150,9 +150,9 @@ public class Angajati {
     }
 
     public Angajati(String fName, String lName) {
-        this(fName, lName,new String(""), null, null, null,new String(""), null, new String("0"), null);
-       // this.fName = new SimpleStringProperty(fName);
-       // this.lName = new SimpleStringProperty(lName);
+        this(fName, lName, new String(""), null, null, null, new String(""), null, new String("0"), null);
+        // this.fName = new SimpleStringProperty(fName);
+        // this.lName = new SimpleStringProperty(lName);
         //this.email = new SimpleStringProperty(email);
     }
 
