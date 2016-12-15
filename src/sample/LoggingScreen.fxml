@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="354.0" prefWidth="374.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoggingScreen">
+    <children>
+      <Button layoutX="243.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleOk" prefHeight="25.0" prefWidth="48.0" text="OK" />
+      <Label layoutX="58.0" layoutY="88.0" text="User">
+         <font>
+            <Font name="Bauhaus 93" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="137.0" text="Password">
+         <font>
+            <Font name="Bauhaus 93" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="userField" layoutX="142.0" layoutY="85.0" promptText="Enter User" />
+      <PasswordField fx:id="passwordField" layoutX="142.0" layoutY="134.0" promptText="Enter Password" />
+    </children>
+   <effect>
+      <Lighting>
+         <bumpInput>
+            <Shadow />
+         </bumpInput>
+         <light>
+            <Light.Distant />
+         </light>
+      </Lighting>
+   </effect>
+</AnchorPane>

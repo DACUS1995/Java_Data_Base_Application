@@ -12,6 +12,14 @@ public class Connect {
 
     //DbConnect(URL, userId, password);
 
+    public static String getID(){
+        return new String("Tudor");
+    }
+
+    public static String getPass(){
+        return new String("bd");
+    }
+
     public static Connection getConnection() {
         return con;
     }

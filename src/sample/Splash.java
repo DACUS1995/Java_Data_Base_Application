@@ -29,7 +29,7 @@ public class Splash {
     //This method is automatically called after the fxml file has been loaded.
     @FXML
     private void initialize() throws InterruptedException {
-        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
         delay.setOnFinished( event -> dialogStage.close() );
         delay.play();
     }

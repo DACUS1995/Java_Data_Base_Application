@@ -30,22 +30,49 @@ public class Main extends Application {
         loader.setLocation(Main.class.getResource("Splash.fxml"));
         AnchorPane page = (AnchorPane) loader.load();
 
-        // Create the dialog Stage.
-        Stage dialogStage = new Stage();
-        dialogStage.setTitle("Splah");
-        dialogStage.initModality(Modality.NONE);
+        // Create the SplashCreen Stage.
+        Stage splashStage = new Stage();
+        splashStage.setTitle("Splash");
+        splashStage.initModality(Modality.NONE);
 
         Scene scene = new Scene(page);
-        dialogStage.setScene(scene);
+        splashStage.setScene(scene);
 
         Splash controller = loader.getController();
-        controller.setDialogStage(dialogStage);
+        controller.setDialogStage(splashStage);
 
-        dialogStage.showAndWait();
+        splashStage.showAndWait();
 
         /**
          *Splash Screen ending
          */
+
+
+        /**
+         *Logging Screen
+         */
+        FXMLLoader loader_1 = new FXMLLoader();
+        loader_1.setLocation(Main.class.getResource("LoggingScreen.fxml"));
+        AnchorPane page_1 = (AnchorPane) loader_1.load();
+
+        // Create the SplashCreen Stage.
+        Stage loggingStage = new Stage();
+        loggingStage.setTitle("Sign In");
+        loggingStage.initModality(Modality.NONE);
+
+        Scene scene_1 = new Scene(page_1);
+        loggingStage.setScene(scene_1);
+
+        LoggingScreen controller_1 = loader_1.getController();
+        controller_1.setDialogStage(loggingStage);
+
+        loggingStage.showAndWait();
+
+        /**
+         *Logging Screen ending
+         */
+
+
 
         primaryStage.show();
 
