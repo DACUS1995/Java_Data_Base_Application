@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="407.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Cereri_simple.Cerere_Simpla_1">
+<AnchorPane prefHeight="407.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Cereri_simple.Cerere_Simpla_5">
    <children>
       <TableView fx:id="Table" prefHeight="400.0" prefWidth="302.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnResizePolicy>
@@ -14,9 +14,7 @@
          </columnResizePolicy>
          <columns>
             <TableColumn fx:id="indicatorEchipa" prefWidth="75.0" text="Indicator Echipa" />
-            <TableColumn fx:id="oreAlocate" prefWidth="75.0" text="Ore Alocate" />
-            <TableColumn fx:id="nume" prefWidth="75.0" text="Nume" />
-            <TableColumn fx:id="prenume" prefWidth="75.0" text="Prenume" />
+            <TableColumn fx:id="numarAngajati" prefWidth="75.0" text="Numar Angajati" />
          </columns>
       </TableView>
    </children>

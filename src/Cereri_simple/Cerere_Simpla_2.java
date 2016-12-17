@@ -1,34 +1,34 @@
-package sample;/**
+package Cereri_simple;/**
  * Created by DACUS on 01-Dec-16.
  */
 
 import DBRelated.Connect;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.sql.*;
-import java.util.Arrays;
 
-public class Cerere_Simpla_1 {
+public class Cerere_Simpla_2 {
 
     @FXML
     private TableView<String[]> Table;
     @FXML
     private TableColumn<String[], String> indicatorEchipa;
     @FXML
-    private TableColumn<String[], String> oreAlocate;
-    @FXML
     private TableColumn<String[], String> nume;
     @FXML
     private TableColumn<String[], String> prenume;
+    @FXML
+    private TableColumn<String[], String> salariu;
+    @FXML
+    private TableColumn<String[], String> telefon;
+    @FXML
+    private TableColumn<String[], String> bonus;
 
     private static Connection con = null;
     private Stage dialogStage;
@@ -43,28 +43,38 @@ public class Cerere_Simpla_1 {
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length>0 ? x[0] : "<no name>");
         });
-        oreAlocate.setCellValueFactory((p)->{
+        salariu.setCellValueFactory((p)->{
             String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length>0 ? x[1] : "<no name>");
+            return new SimpleStringProperty(x != null && x.length>0 ? x[3] : "<no name>");
         });
         nume.setCellValueFactory((p)->{
             String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length>0 ? x[2] : "<no name>");
+            return new SimpleStringProperty(x != null && x.length>0 ? x[1] : "<no name>");
         });
 
         prenume.setCellValueFactory((p) -> {
             String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length > 0 ? x[3] : "<no name>");
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[2] : "<no name>");
+        });
+
+        telefon.setCellValueFactory((p) -> {
+            String[] x = p.getValue();
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[4] : "<no name>");
+        });
+
+        bonus.setCellValueFactory((p) -> {
+            String[] x = p.getValue();
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[5] : "<no name>");
         });
 
         con = Connect.getConnection();
         CallableStatement call = null;
         try {
-            call = con.prepareCall("{call Cerere_Simpla_1()}");
+            call = con.prepareCall("{call Cerere_Simpla_2()}");
             ResultSet rs = call.executeQuery();
             ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
-                String[] res = {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)};
+                String[] res = {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)};
                 data.add(res);
             }
             System.out.println(call.toString());
