@@ -114,9 +114,14 @@
                         <fx:include fx:id="Tab2" source="Tab2.fxml" />
                     </content>
                 </Tab>
-            <Tab text="Panou Cereri">
+            <Tab text="Panou Cereri 1">
                <content>
                   <fx:include fx:id="Tab3" source="Tab3.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Panou Cereri 2">
+               <content>
+                  <fx:include fx:id="Tab4" source="Tab4.fxml" />
                </content>
             </Tab>
             </tabs>

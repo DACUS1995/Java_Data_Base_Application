@@ -68,6 +68,7 @@ public class Main extends Application {
 
         loggingStage.showAndWait();
 
+
         /**
          *Logging Screen ending
          */

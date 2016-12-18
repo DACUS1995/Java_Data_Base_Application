@@ -60,7 +60,7 @@ public class Controller implements Initializable {
 
 
     //create table data
-    final ObservableList<Angajati> data = SelectAngajati.getDataFromDB(); //get loaded array of Angajati
+     ObservableList<Angajati> data = SelectAngajati.getDataFromDB(); //get loaded array of Angajati
     final ObservableList<String> searchParam = FXCollections.observableArrayList("Nume", "Prenume");
 
     //Connects the FXML data type from tabel with the one from Angajati class
@@ -130,6 +130,7 @@ public class Controller implements Initializable {
         if (okClicked) {
             this.data.add(tempAngajat);
         }
+
     }
 
     /**
