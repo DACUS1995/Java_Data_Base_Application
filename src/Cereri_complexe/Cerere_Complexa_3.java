@@ -9,7 +9,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.Tab4Controller;
 
 import java.sql.*;
 
@@ -24,8 +26,11 @@ public class Cerere_Complexa_3 {
     @FXML
     private TableColumn<String[], String> telefon;
     @FXML
-    private TableColumn<String[], String> numarLucrari;
+    private TableColumn<String[], String> specializare;
+    @FXML
+    private TableColumn<String[], String> salariu;
 
+    private static int topN;
     private static Connection con = null;
     private Stage dialogStage;
     private boolean okClicked = false;
@@ -50,19 +55,26 @@ public class Cerere_Complexa_3 {
             return new SimpleStringProperty(x != null && x.length > 0 ? x[2] : "<no name>");
         });
 
-        numarLucrari.setCellValueFactory((p) -> {
+        specializare.setCellValueFactory((p) -> {
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length > 0 ? x[3] : "<no name>");
+        });
+
+        salariu.setCellValueFactory((p) -> {
+            String[] x = p.getValue();
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[4] : "<no name>");
         });
 
         con = Connect.getConnection();
         CallableStatement call = null;
         try {
-            call = con.prepareCall("{call Cerere_Simpla_3()}");
+            call = con.prepareCall("{call Cerere_Complexa_3(?)}");
+            call.setString(1, String.valueOf(topN));
+            System.out.println(topN);
             ResultSet rs = call.executeQuery();
             ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
-                String[] res = {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)};
+                String[] res = {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)};
                 data.add(res);
             }
             System.out.println(call.toString());
@@ -101,4 +113,8 @@ public class Cerere_Complexa_3 {
         dialogStage.close();
     }
 
+    //Set local Querry paramater
+    public static void setPara(int topN){
+        Cerere_Complexa_3.topN = topN;
+    }
 }

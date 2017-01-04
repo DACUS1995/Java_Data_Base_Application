@@ -15,5 +15,8 @@
       <Button layoutX="373.0" layoutY="145.0" mnemonicParsing="false" onAction="#OnCLick_3" text="Execute" />
       <Button layoutX="373.0" layoutY="185.0" mnemonicParsing="false" onAction="#OnCLick_4" text="Execute" />
       <Label layoutX="203.0" layoutY="189.0" text="Cerere Complexa 4" />
+      <TextField fx:id="topN" layoutX="462.0" layoutY="145.0" prefHeight="25.0" prefWidth="108.0" promptText="Insert Parameter" />
+      <TextField fx:id="numD" layoutX="462.0" layoutY="185.0" prefHeight="25.0" prefWidth="46.0" promptText="Insert Parameter" />
+      <TextField fx:id="telN" layoutX="524.0" layoutY="185.0" prefHeight="25.0" prefWidth="46.0" promptText="Insert Parameter" />
    </children>
 </AnchorPane>

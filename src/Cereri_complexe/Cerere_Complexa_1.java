@@ -18,13 +18,13 @@ public class Cerere_Complexa_1 {
     @FXML
     private TableView<String[]> Table;
     @FXML
-    private TableColumn<String[], String> indicatorEchipa;
-    @FXML
-    private TableColumn<String[], String> oreAlocate;
-    @FXML
     private TableColumn<String[], String> nume;
     @FXML
     private TableColumn<String[], String> prenume;
+    @FXML
+    private TableColumn<String[], String> indicatorEchipa;
+    @FXML
+    private TableColumn<String[], String> dataAngajare;
 
     private static Connection con = null;
     private Stage dialogStage;
@@ -35,20 +35,20 @@ public class Cerere_Complexa_1 {
     @FXML
     private void initialize() {
 
-        indicatorEchipa.setCellValueFactory((p)->{
+        nume.setCellValueFactory((p)->{
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length>0 ? x[0] : "<no name>");
         });
-        oreAlocate.setCellValueFactory((p)->{
+        prenume.setCellValueFactory((p)->{
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length>0 ? x[1] : "<no name>");
         });
-        nume.setCellValueFactory((p)->{
+        indicatorEchipa.setCellValueFactory((p)->{
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length>0 ? x[2] : "<no name>");
         });
 
-        prenume.setCellValueFactory((p) -> {
+        dataAngajare.setCellValueFactory((p) -> {
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length > 0 ? x[3] : "<no name>");
         });
@@ -56,7 +56,7 @@ public class Cerere_Complexa_1 {
         con = Connect.getConnection();
         CallableStatement call = null;
         try {
-            call = con.prepareCall("{call Cerere_Simpla_1()}");
+            call = con.prepareCall("{call Cerere_Complexa_1()}");
             ResultSet rs = call.executeQuery();
             ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {

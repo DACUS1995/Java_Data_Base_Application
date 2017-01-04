@@ -18,14 +18,20 @@ public class Cerere_Complexa_4 {
     @FXML
     private TableView<String[]> Table;
     @FXML
+    private TableColumn<String[], String> adresa;
+    @FXML
+    private TableColumn<String[], String> pachetul;
+    @FXML
+    private TableColumn<String[], String> numarZile;
+    @FXML
     private TableColumn<String[], String> nume;
     @FXML
     private TableColumn<String[], String> prenume;
     @FXML
-    private TableColumn<String[], String> adresa;
-    @FXML
-    private TableColumn<String[], String> tipLucrare;
+    private TableColumn<String[], String> telefonul;
 
+    private static int numD;
+    private static int telN;
     private static Connection con = null;
     private Stage dialogStage;
     private boolean okClicked = false;
@@ -35,34 +41,46 @@ public class Cerere_Complexa_4 {
     @FXML
     private void initialize() {
 
-        nume.setCellValueFactory((p) -> {
-            String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length > 0 ? x[2] : "<no name>");
-        });
-
-        prenume.setCellValueFactory((p) -> {
-            String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length > 0 ? x[3] : "<no name>");
-        });
-
         adresa.setCellValueFactory((p) -> {
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length > 0 ? x[0] : "<no name>");
         });
 
-        tipLucrare.setCellValueFactory((p) -> {
+        pachetul.setCellValueFactory((p) -> {
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length > 0 ? x[1] : "<no name>");
+        });
+
+        numarZile.setCellValueFactory((p) -> {
+            String[] x = p.getValue();
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[2] : "<no name>");
+        });
+
+        nume.setCellValueFactory((p) -> {
+            String[] x = p.getValue();
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[3] : "<no name>");
+        });
+
+        prenume.setCellValueFactory((p) -> {
+            String[] x = p.getValue();
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[4] : "<no name>");
+        });
+
+        telefonul.setCellValueFactory((p) -> {
+            String[] x = p.getValue();
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[5] : "<no name>");
         });
 
         con = Connect.getConnection();
         CallableStatement call = null;
         try {
-            call = con.prepareCall("{call Cerere_Simpla_4()}");
+            call = con.prepareCall("{call Cerere_Complexa_4(?,?)}");
+            call.setString(1, String.valueOf(numD));
+            call.setString(2, String.valueOf(telN));
             ResultSet rs = call.executeQuery();
             ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
-                String[] res = {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)};
+                String[] res = {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)};
                 data.add(res);
             }
             System.out.println(call.toString());
@@ -100,5 +118,17 @@ public class Cerere_Complexa_4 {
     private void handleCancel() {
         dialogStage.close();
     }
+
+    //Set local Querry paramater
+    public static void setPara1(int numD){
+        Cerere_Complexa_4.numD = numD;
+    }
+
+    //Set local Querry paramater
+    public static void setPara2(int telN){
+        Cerere_Complexa_4.telN = telN;
+    }
+
+
 
 }

@@ -18,17 +18,14 @@ public class Cerere_Complexa_2 {
     @FXML
     private TableView<String[]> Table;
     @FXML
-    private TableColumn<String[], String> indicatorEchipa;
-    @FXML
     private TableColumn<String[], String> nume;
     @FXML
     private TableColumn<String[], String> prenume;
     @FXML
+    private TableColumn<String[], String> dataAngajare;
+    @FXML
     private TableColumn<String[], String> salariu;
-    @FXML
-    private TableColumn<String[], String> telefon;
-    @FXML
-    private TableColumn<String[], String> bonus;
+
 
     private static Connection con = null;
     private Stage dialogStage;
@@ -39,42 +36,34 @@ public class Cerere_Complexa_2 {
     @FXML
     private void initialize() {
 
-        indicatorEchipa.setCellValueFactory((p)->{
+        nume.setCellValueFactory((p)->{
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length>0 ? x[0] : "<no name>");
         });
-        salariu.setCellValueFactory((p)->{
-            String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length>0 ? x[3] : "<no name>");
-        });
-        nume.setCellValueFactory((p)->{
+        prenume.setCellValueFactory((p)->{
             String[] x = p.getValue();
             return new SimpleStringProperty(x != null && x.length>0 ? x[1] : "<no name>");
         });
-
-        prenume.setCellValueFactory((p) -> {
+        dataAngajare.setCellValueFactory((p)->{
             String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length > 0 ? x[2] : "<no name>");
+            return new SimpleStringProperty(x != null && x.length>0 ? x[2] : "<no name>");
         });
 
-        telefon.setCellValueFactory((p) -> {
+        salariu.setCellValueFactory((p) -> {
             String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length > 0 ? x[4] : "<no name>");
+            return new SimpleStringProperty(x != null && x.length > 0 ? x[3] : "<no name>");
         });
 
-        bonus.setCellValueFactory((p) -> {
-            String[] x = p.getValue();
-            return new SimpleStringProperty(x != null && x.length > 0 ? x[5] : "<no name>");
-        });
+
 
         con = Connect.getConnection();
         CallableStatement call = null;
         try {
-            call = con.prepareCall("{call Cerere_Simpla_2()}");
+            call = con.prepareCall("{call Cerere_Complexa_2()}");
             ResultSet rs = call.executeQuery();
             ResultSetMetaData rsmd = rs.getMetaData();
             while (rs.next()) {
-                String[] res = {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6)};
+                String[] res = {rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)};
                 data.add(res);
             }
             System.out.println(call.toString());
