@@ -36,6 +36,7 @@ public class Cerere_Complexa_3 {
     private boolean okClicked = false;
     final ObservableList<String[]> data = FXCollections.observableArrayList();
 
+
     //This method is automatically called after the fxml file has been loaded.
     @FXML
     private void initialize() {
@@ -100,7 +101,6 @@ public class Cerere_Complexa_3 {
 
 
     //Called when the user clicks ok.
-
     @FXML
     private void handleOk() {
         okClicked = true;
@@ -114,7 +114,7 @@ public class Cerere_Complexa_3 {
     }
 
     //Set local Querry paramater
-    public static void setPara(int topN){
+    public static void setPara(int topN) {
         Cerere_Complexa_3.topN = topN;
     }
 }

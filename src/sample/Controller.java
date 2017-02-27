@@ -222,7 +222,6 @@ public class Controller implements Initializable {
     /**
     * Search button for first name
      * */
-    //TODO Create complex search direct from DataBase with TabelView display of the results
     public void searchButoonClicked() {
         if (searchField.getText().equals("")) {
             Alert alert = new Alert(Alert.AlertType.WARNING);

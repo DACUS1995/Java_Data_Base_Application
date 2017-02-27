@@ -38,22 +38,22 @@ public class SelectAngajati {
 
 
     /**
-    * Method for updating an existing Angajat from DataBase
+     * Method for updating an existing Angajat from DataBase
      * called from AngajatiEditDialogController
-    * */
-    public static void updateAngajat(Angajati angajat){
+     */
+    public static void updateAngajat(Angajati angajat) {
         con = Connect.getConnection();
         CallableStatement call = null;
         try {
             call = con.prepareCall("{call Update_Angajati(?,?,?,?,?,?,?,?,?,?)}");
-            call.setString(1,angajat.getlName());
-            call.setString(2,angajat.getfName());
-            call.setString(3,angajat.getDataAngajare().toPattern());
-            call.setString(4,angajat.getSex());
-            call.setString(5,angajat.getTel());
-            call.setString(6,angajat.getEmail());
-            call.setString(7,angajat.getDataNastere().toPattern());
-            call.setString(8,angajat.getSalariu());
+            call.setString(1, angajat.getlName());
+            call.setString(2, angajat.getfName());
+            call.setString(3, angajat.getDataAngajare().toPattern());
+            call.setString(4, angajat.getSex());
+            call.setString(5, angajat.getTel());
+            call.setString(6, angajat.getEmail());
+            call.setString(7, angajat.getDataNastere().toPattern());
+            call.setString(8, angajat.getSalariu());
             call.setString(9, String.valueOf(angajat.getIdEchipa()));
             call.setString(10, angajat.getSpecializare());
             boolean res = call.execute();
@@ -65,7 +65,6 @@ public class SelectAngajati {
     }
 
 
-
     /**
      * Method for deleting an existing Angajat from DataBase by Prenume and DataNastere
      * called by Controller
@@ -74,7 +73,7 @@ public class SelectAngajati {
         con = Connect.getConnection();
         String queryString = "DELETE FROM Angajati WHERE " +
                 "Prenume='" + angajat.getfName() + "' AND DataNastere='" +
-                angajat.getDataNastere().toPattern() + "';" ;
+                angajat.getDataNastere().toPattern() + "';";
 
         Statement statement = null;
         try {
